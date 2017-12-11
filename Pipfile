@@ -16,6 +16,7 @@ flask-migrate = "*"
 flask-sqlalchemy = "*"
 mysql-python = "*"
 flask-restful = "*"
+marshmallow = "*"
 
 
 [requires]
