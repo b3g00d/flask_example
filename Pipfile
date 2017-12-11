@@ -14,6 +14,8 @@ name = "pypi"
 flask = "*"
 flask-migrate = "*"
 flask-sqlalchemy = "*"
+mysql-python = "*"
+flask-restful = "*"
 
 
 [requires]

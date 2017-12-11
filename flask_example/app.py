@@ -6,6 +6,7 @@ from flask_example.extensions import (
     migrate,
     db
 )
+from flask_example.models import ExampleBase
 
 
 def create_app(env_name=None, blueprints=None):
@@ -33,6 +34,7 @@ def create_app(env_name=None, blueprints=None):
 def configure_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db=db)
+    configure_commands(app)
     configure_migrate_commands(app)
 
 
@@ -40,10 +42,18 @@ def configure_commands(app):
     @app.cli.command()
     def seed():
         click.echo("Not implement seeding")
+        click.echo(app.config["SQLALCHEMY_DATABASE_URI"])
 
     @app.cli.command()
     def dropdb():
         click.echo("Not implement dropdb")
+
+    @app.cli.command()
+    def create_all():
+        click.echo("CREATING")
+        db.create_all()
+        db.session.commit()
+        click.echo("DONE")
 
 
 def configure_blueprints(app, blueprints):
